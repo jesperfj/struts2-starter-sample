@@ -13,6 +13,13 @@
     <properties>
         <struts2.version>2.1.8.1</struts2.version>
     </properties>
+<repositories>
+  <repository>
+    <id>webapp-runner-repo</id>
+    <name>webapp runner repository on GitHub</name>
+    <url>http://jsimone.github.com/webapp-runner/repository/</url>
+  </repository>
+</repositories>
 
 	<dependencies>
 		<!-- Junit -->
@@ -96,6 +103,28 @@
     				<scanIntervalSeconds>10</scanIntervalSeconds>
     			</configuration>
     		</plugin>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>2.3</version>
+          <executions>
+              <execution>
+                  <phase>package</phase>
+                  <goals><goal>copy</goal></goals>
+                  <configuration>
+                      <artifactItems>
+                          <artifactItem>
+                              <groupId>webapp.runner</groupId>
+                              <artifactId>webapp-runner</artifactId>
+                              <version>0.0.6</version>
+                              <destFileName>webapp-runner.jar</destFileName>
+                          </artifactItem>
+                      </artifactItems>
+                  </configuration>
+              </execution>
+          </executions>
+      </plugin>
+
     	</plugins>
     </build>
 </project>
